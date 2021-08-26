@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Show all products";
+}
+
+@model IList<Product>
+
+List of products
+@if (Model.Any())
+{
+    <ol>
+        @foreach (Product product in Model)
+        {
+            <li>@product.Title</li>
+        }
+    </ol>
+}
