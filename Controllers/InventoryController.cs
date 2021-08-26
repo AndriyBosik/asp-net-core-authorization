@@ -16,7 +16,7 @@ namespace AuthorizationExample.Controllers
             _context = context;
         }
         
-        [Authorize(Roles = "Admin, User")]
+        [Authorize(Policy = "Ukraine")]
         [HttpGet]
         public IActionResult Show()
         {
@@ -24,7 +24,7 @@ namespace AuthorizationExample.Controllers
             return View(products);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Policy = "England")]
         [HttpGet]
         public IActionResult Concrete(int id)
         {

@@ -51,7 +51,7 @@ namespace AuthorizationExample.Controllers
 
                     await Authenticate(user);
 
-                    return RedirectToAction("Show", "Inventory");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -80,7 +80,7 @@ namespace AuthorizationExample.Controllers
                 if (user != null)
                 {
                     await Authenticate(user);
-                    return RedirectToAction("Show", "Inventory");
+                    return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError("", "Invalid username and(or) password");
             }
@@ -93,7 +93,7 @@ namespace AuthorizationExample.Controllers
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Username),
-                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Title)
+                user.City == "Ukraine" ? new Claim("Rivne", "") : new Claim("City", user.City)
             };
 
             ClaimsIdentity id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,

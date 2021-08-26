@@ -16,6 +16,9 @@ namespace AuthorizationExample.Models
         [Column("password")]
         public string Password { get; set; }
         
+        [Column("city")]
+        public string City { get; set; }
+        
         [Column("role_id")]
         public int RoleId { get; set; }
         

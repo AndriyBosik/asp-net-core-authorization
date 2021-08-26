@@ -30,6 +30,18 @@ namespace AuthorizationExample
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PostgresqlConnection")));
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Ukraine", policy =>
+                {
+                    policy.RequireClaim("Rivne");
+                });
+                options.AddPolicy("England", policy =>
+                {
+                    policy.RequireClaim("City", "London");
+                });
+            });
+            
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
